@@ -10,7 +10,7 @@ import android.view.View;
 import java.io.File;
 
 public class PlayVideoWithIntentActivity extends Activity {
-    String filename = "test[1].mp4";
+    String filename = "test.mp4";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

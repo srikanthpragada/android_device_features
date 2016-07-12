@@ -4,12 +4,8 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CallLog;
-import android.provider.Telephony;
 import android.util.Log;
 import android.widget.TextView;
-
-import java.util.Date;
 
 public class ListSmsInboxActivity extends Activity {
 
@@ -24,8 +20,27 @@ public class ListSmsInboxActivity extends Activity {
 		Cursor cursor = null;
 		try {
 			Uri uriSms = Uri.parse("content://sms/inbox");
-			Cursor c = getContentResolver().query(uriSms, null,null,null,null);
+			cursor = getContentResolver().query(uriSms, null,null,null,null);
 
+
+			for(int i = 0 ; i < cursor.getColumnCount() ; i++)
+				Log.d ("Columns", cursor.getColumnName(i) );
+
+			while(cursor.moveToNext())
+			{
+
+				for(int i = 0 ; i < cursor.getColumnCount() ; i++)
+					try {
+						Log.d("Data", i  + " :  " +  cursor.getString(i));
+					}
+					catch(Exception ex) {
+
+					}
+
+				break;
+			}
+
+			/*
 			if (cursor != null) {
 			  while (cursor.moveToNext()) {
 					String address = cursor
@@ -41,12 +56,12 @@ public class ListSmsInboxActivity extends Activity {
 
 				}
 			} else
-				Log.d("demo", "No messages!");
+				Log.d("demo", "No messages!"); */
 			
 			
 
 		} catch (Exception ex) {
-			Log.d("MissedCalls", ex.getMessage());
+			Log.d("Exception", ex.getMessage());
 		} finally {
 			if ( cursor != null)
 				 cursor.close();

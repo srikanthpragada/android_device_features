@@ -1,7 +1,5 @@
 package com.st.devicefeaturesdemo;
 
-import java.io.File;
-
 import android.app.Activity;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
@@ -10,6 +8,8 @@ import android.os.Environment;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
+
+import java.io.File;
 
 public class PlayVideoActivity extends Activity
          implements OnCompletionListener {

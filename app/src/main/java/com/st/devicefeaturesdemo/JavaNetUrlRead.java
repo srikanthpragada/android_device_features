@@ -1,18 +1,16 @@
 package com.st.devicefeaturesdemo;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 
 public class JavaNetUrlRead extends Activity {
 	private EditText editUrl;
@@ -60,7 +58,7 @@ public class JavaNetUrlRead extends Activity {
 			    content.append("Sorry! Invalid URL. Please try again!");
 			}
 
-
+            // Run code in UI Thread
 			textContents.post( new Runnable() {
 				public void run() {
 					textContents.setText(content);

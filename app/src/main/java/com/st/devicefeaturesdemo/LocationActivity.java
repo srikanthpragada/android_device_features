@@ -104,7 +104,7 @@ public class LocationActivity extends Activity {
 		// updates
         try {
 			locationManager.requestLocationUpdates
-					(getProvider(locationManager), 0,	0, locationListener);
+					(getProvider(locationManager), 0,50, locationListener);
 			Log.d("LocationActivity", "Activiate Listener");
 		}
 		catch(Exception ex) {
@@ -119,6 +119,7 @@ public class LocationActivity extends Activity {
 		try {
 			// Call the synchronous getFromLocation() method by passing in the
 			// lat/long values.
+			// lat, long, no. of results
 			addresses = geocoder.getFromLocation(latitude, longitude, 1);
 		} catch (IOException e) {
 			e.printStackTrace();

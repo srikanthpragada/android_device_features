@@ -74,7 +74,7 @@ public class JavaNetUrlReadWithHandler extends Activity {
 				rd.close();
 				Message m = handler.obtainMessage();
 				m.obj = content;
-				handler.sendMessage(m); // update view
+				handler.sendMessage(m); // update view by calling handleMessage()
 			} catch (Exception ex) {
 				Message m = handler.obtainMessage();
 				m.obj = "Error : " + ex.getMessage();

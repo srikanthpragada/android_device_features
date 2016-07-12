@@ -18,10 +18,10 @@ public class MakeCallWithIntent extends Activity {
     }
 	
     public void makeCall(View v) {
-//    	Intent  intent = new Intent( Intent.ACTION_CALL,
-//				  Uri.parse( "tel:"  + editPhoneNumber.getText().toString()));
+    	Intent  intent = new Intent( Intent.ACTION_CALL,
+				  Uri.parse( "tel:"  + editPhoneNumber.getText().toString()));
 
-		Intent  intent = new Intent( Intent.ACTION_DIAL);
+		// Intent  intent = new Intent( Intent.ACTION_DIAL);
     	startActivity(intent);
     } 
 }

@@ -16,75 +16,65 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-public class GitHubClientActivity extends Activity {
+public class WeatherReportActivity extends Activity {
 
-    private static final String URL = "https://api.github.com/users/";
-    private EditText editUrl;
-    private TextView textContents;
+    private static final String URL = "http://api.openweathermap.org/data/2.5/weather?q=";
+    private static final String APPID = "YOUR APP API";
+    private EditText editCity, editCountry;
+    private TextView textWeather;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.callrest);
-        textContents = (TextView) findViewById(R.id.textContents);
-        editUrl = (EditText) findViewById(R.id.editUrl);
-        editUrl.setText("srikanthpragada");
+        setContentView(R.layout.activity_weather_report);
+        textWeather = (TextView) findViewById(R.id.textWeather);
+        editCity = (EditText) findViewById(R.id.editCity);
+        editCountry = (EditText) findViewById(R.id.editCountry);
+
     }
 
-    public void callRestService(View v) {
+    public void getWeather(View v) {
         final Handler contentHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                textContents.setText(msg.obj.toString());
-            }
-        };
-
-        DownloadThread dt = new DownloadThread(contentHandler,
-                editUrl.getText().toString());
-        dt.start();
-    }
-
-    public void processResult(View v) {
-        final Handler contentHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if (msg.obj.toString().equals("")) {
-                    textContents.setText("Sorry! Name not found!");
+                if ( msg.obj.toString().contains("Error")) {
+                    textWeather.setText(msg.obj.toString());
                     return;
                 }
+
                 try {
-                    Log.d("ST", msg.obj.toString());
                     JSONObject obj = new JSONObject(msg.obj.toString());
-                    StringBuffer data = new StringBuffer();
-                    data.append(obj.get("email").toString() + "\n");
-                    data.append(obj.get("location").toString());
-                    textContents.setText(data.toString());
-                } catch (Exception ex) {
-                    Log.d("ST", "Error -> " + ex.getMessage());
+                    JSONObject coord = obj.getJSONObject("coord");
+                    String lon = coord.getString("lon");
+                    String lat = coord.getString("lat");
+                    JSONObject main = obj.getJSONObject("main");
+                    String temp = main.getString("temp");
+                    textWeather.setText("Temprature : " + temp);
+                    textWeather.append("\nLongitude : " + lon);
+                    textWeather.append("\nLatitude  : " + lat);
+                }
+                catch(Exception ex) {
+                    Log.d("DeviceFeaturesDemo", ex.getMessage());
                 }
             }
-
-            ;
         };
 
         DownloadThread dt = new DownloadThread(contentHandler,
-                editUrl.getText().toString());
+                editCity.getText().toString(), editCountry.getText().toString());
         dt.start();
     }
-
 
     class DownloadThread extends Thread {
         Handler handler;
-        String user;
-
-        public DownloadThread(Handler handler, String user) {
+        String  url;
+        public DownloadThread(Handler handler, String city, String country) {
             this.handler = handler;
-            this.user = user;
+            url = URL + city + "," + country + "&mode=JSON&APPID=" + APPID;
         }
 
         public void run() {
             try {
-                URL sourceUrl = new URL(URL + this.user);
+                URL sourceUrl = new URL(url);
                 InputStream is = null;
                 try {
                     is = sourceUrl.openStream();

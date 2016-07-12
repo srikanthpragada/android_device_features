@@ -24,8 +24,8 @@ public class ListMissedCallsActivity extends Activity {
 		try {
 			cursor = getContentResolver().query(
 					CallLog.Calls.CONTENT_URI,
-					null, null,
-					//CallLog.Calls.TYPE  + " = " + CallLog.Calls.MISSED_TYPE ,
+					null,
+					CallLog.Calls.TYPE  + " = " + CallLog.Calls.MISSED_TYPE,
 					null,
 					CallLog.Calls.DEFAULT_SORT_ORDER);
 

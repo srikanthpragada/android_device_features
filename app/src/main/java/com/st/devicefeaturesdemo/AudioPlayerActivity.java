@@ -1,16 +1,12 @@
 package com.st.devicefeaturesdemo;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -18,6 +14,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AudioPlayerActivity extends Activity {
     ListView listSongs;
@@ -45,6 +46,7 @@ public class AudioPlayerActivity extends Activity {
         songsView.setVisibility(View.INVISIBLE);
 
         musicFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
+        Log.d("AudioPlayer","Folder: " + musicFolder.toString());
         listSongs.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> view, View item,

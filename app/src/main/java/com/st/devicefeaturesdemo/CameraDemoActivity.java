@@ -1,9 +1,5 @@
 package com.st.devicefeaturesdemo;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,6 +13,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CameraDemoActivity extends Activity {
 	
@@ -49,8 +49,7 @@ public class CameraDemoActivity extends Activity {
 	
 	
 	private  Uri getOutputMediaFileUri(){
-	    mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory
-				(Environment.DIRECTORY_PICTURES),"CameraDemo");
+	    mediaStorageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 
 	    // Create the storage directory if it does not exist
 	    if (! mediaStorageDir.exists()){
