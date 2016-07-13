@@ -36,6 +36,7 @@ public class TimeActivity extends Activity {
 
 				socket.close();
 			} catch (final Exception ex) {
+				Log.d("DeviceFeaturesDemo", "Error --> " + ex.getMessage());
 				timeView.post(new Runnable() {
 					public void run() {
 						timeView.setText(ex.getMessage());

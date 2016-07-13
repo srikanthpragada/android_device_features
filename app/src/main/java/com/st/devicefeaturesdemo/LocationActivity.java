@@ -103,6 +103,7 @@ public class LocationActivity extends Activity {
 		// Register the listener with the Location Manager to receive location
 		// updates
         try {
+			// provider, mintime, mindistance, listener
 			locationManager.requestLocationUpdates
 					(getProvider(locationManager), 0,50, locationListener);
 			Log.d("LocationActivity", "Activiate Listener");
