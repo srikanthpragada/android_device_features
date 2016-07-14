@@ -1,15 +1,9 @@
 package com.st.devicefeaturesdemo;
 
-import java.io.File;
-import java.net.URI;
-import java.util.Set;
-
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.ContentValues;
 import android.content.Intent;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,6 +12,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.io.File;
+import java.util.Set;
 
 public class BluetoothActivity extends Activity {
 

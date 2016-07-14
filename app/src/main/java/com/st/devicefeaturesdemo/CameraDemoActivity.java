@@ -49,7 +49,7 @@ public class CameraDemoActivity extends Activity {
 	
 	
 	private  Uri getOutputMediaFileUri(){
-	    mediaStorageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+	      mediaStorageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 
 	    // Create the storage directory if it does not exist
 	    if (! mediaStorageDir.exists()){
